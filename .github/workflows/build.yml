@@ -19,8 +19,8 @@ jobs:
             --highlight-style=tango \
             --template=theme/true-notion-light.tex \
             tutorial.md \
-            --output=tutorial.pdf
+            --output=/data/tutorial.pdf
       - uses: actions/upload-artifact@v2
         with:
           name: pdf
-          path: tutorial.pdf
+          path: /data/tutorial.pdf
