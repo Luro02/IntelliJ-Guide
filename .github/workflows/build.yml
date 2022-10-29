@@ -9,17 +9,17 @@ jobs:
       - name: Build docker images
         run: docker build -t local .
       - name: Build PDF
-        run: >- # allows you to break string into multiple lines
-          docker run -v $PWD:/data -t local
-          pandoc
-          --pdf-engine=xelatex
-          -f gfm
-          -t pdf
-          --embed-resources
-          --highlight-style=tango
-          --template=theme/true-notion-light.tex
-          tutorial.md
-          --output=tutorial.pdf
+        run: |
+          docker run -v $PWD:/data -t local \
+            pandoc \
+            --pdf-engine=xelatex \
+            -f gfm \
+            -t pdf \
+            --embed-resources \
+            --highlight-style=tango \
+            --template=theme/true-notion-light.tex \
+            tutorial.md \
+            --output=tutorial.pdf
       - uses: actions/upload-artifact@v2
         with:
           name: pdf
