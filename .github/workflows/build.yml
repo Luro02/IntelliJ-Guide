@@ -10,7 +10,7 @@ jobs:
         run: docker build -t local .
       - name: Build PDF
         run: >- # allows you to break string into multiple lines
-          docker run -v $PWD:/data local
+          docker run -v $PWD:/data -t local
           pandoc
           --pdf-engine=xelatex
           -f gfm
