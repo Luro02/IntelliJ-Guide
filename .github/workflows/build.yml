@@ -10,17 +10,9 @@ jobs:
         run: docker build -t local .
       - name: Build PDF
         run: |
-          docker run -v $PWD:/data local \
-            pandoc \
-            --pdf-engine=xelatex \
-            -f gfm \
-            -t pdf \
-            --embed-resources \
-            --highlight-style=tango \
-            --template=theme/true-notion-light.tex \
-            tutorial.md \
-            --output=/data/tutorial.pdf
+          docker run -v $PWD:/data local "pandoc --pdf-engine=xelatex -f gfm -t pdf --embed-resources --highlight-style=tango --template=theme/true-notion-light.tex tutorial.md --output=tutorial.pdf"
       - uses: actions/upload-artifact@v2
         with:
           name: pdf
           path: tutorial.pdf
+          if-no-files-found: error
