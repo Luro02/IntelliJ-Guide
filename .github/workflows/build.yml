@@ -2,21 +2,22 @@ name: Build
 on: push
 jobs:
   pandoc:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
-      - uses: docker://pandoc/latex:2.19
-        with:
-          args: >- # allows you to break string into multiple lines
-            --pdf-engine=xelatex
-            -f gfm
-            -t pdf
-            --embed-resources
-            --highlight-style=tango
-            --template=theme/true-notion-light.tex
-            tutorial.md
-            --output=tutorial.pdf
+      - using: 'docker'
+        image: 'Dockerfile'
+        args: >- # allows you to break string into multiple lines
+          pandoc
+          --pdf-engine=xelatex
+          -f gfm
+          -t pdf
+          --embed-resources
+          --highlight-style=tango
+          --template=theme/true-notion-light.tex
+          tutorial.md
+          --output=tutorial.pdf
       - uses: actions/upload-artifact@v2
         with:
           name: pdf
