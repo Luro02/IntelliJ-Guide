@@ -14,7 +14,7 @@ jobs:
             -t pdf
             --embed-resources
             --highlight-style=tango
-            --template=Pandoc-Themes/true-notion-light.tex
+            --template=theme/true-notion-light.tex
             tutorial.md
             --output=tutorial.pdf
       - uses: actions/upload-artifact@v2
