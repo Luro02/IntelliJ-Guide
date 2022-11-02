@@ -22,7 +22,7 @@ Dazu in GitHub auf `Actions` drücken, den obersten workflow auswählen und dann
 Um das bauen zu vereinfachen wird docker verwendet:
 ```
 $ docker build -t intellij-pandoc .
-$ docker run -v $PWD:/data local "pandoc --pdf-engine=xelatex -f gfm -t pdf --embed-resources --highlight-style=tango --template=theme/true-notion-light.tex tutorial.md --output=tutorial.pdf"
+$ docker run -v $PWD:/data intellij-pandoc "pandoc --pdf-engine=xelatex -f gfm -t pdf --embed-resources --highlight-style=tango --template=theme/true-notion-light.tex tutorial.md --output=tutorial.pdf"
 ```
 (Wichtig: Auf Windows statt `$PWD`, `${PWD}` nehmen)
 
